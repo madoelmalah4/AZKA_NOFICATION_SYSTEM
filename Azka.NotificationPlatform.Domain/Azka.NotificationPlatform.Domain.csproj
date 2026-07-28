@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>Azka.NotificationPlatform.Domain</RootNamespace>
+    <AssemblyName>Azka.NotificationPlatform.Domain</AssemblyName>
+    <!-- Zero external package references — by architectural design -->
+  </PropertyGroup>
+
+</Project>

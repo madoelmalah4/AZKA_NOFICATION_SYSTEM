@@ -1,0 +1,15 @@
+C:\Users\E.J.S\source\repos\AZKA_NOTIFICATION_SYSTEM\src\Azka.NotificationPlatform.Application\bin\Debug\net8.0\Azka.NotificationPlatform.Application.deps.json
+C:\Users\E.J.S\source\repos\AZKA_NOTIFICATION_SYSTEM\src\Azka.NotificationPlatform.Application\bin\Debug\net8.0\Azka.NotificationPlatform.Application.dll
+C:\Users\E.J.S\source\repos\AZKA_NOTIFICATION_SYSTEM\src\Azka.NotificationPlatform.Application\bin\Debug\net8.0\Azka.NotificationPlatform.Application.pdb
+C:\Users\E.J.S\source\repos\AZKA_NOTIFICATION_SYSTEM\src\Azka.NotificationPlatform.Application\bin\Debug\net8.0\Azka.NotificationPlatform.Domain.dll
+C:\Users\E.J.S\source\repos\AZKA_NOTIFICATION_SYSTEM\src\Azka.NotificationPlatform.Application\bin\Debug\net8.0\Azka.NotificationPlatform.Domain.pdb
+C:\Users\E.J.S\source\repos\AZKA_NOTIFICATION_SYSTEM\src\Azka.NotificationPlatform.Application\obj\Debug\net8.0\Azka.NotificationPlatform.Application.csproj.AssemblyReference.cache
+C:\Users\E.J.S\source\repos\AZKA_NOTIFICATION_SYSTEM\src\Azka.NotificationPlatform.Application\obj\Debug\net8.0\Azka.NotificationPlatform.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\E.J.S\source\repos\AZKA_NOTIFICATION_SYSTEM\src\Azka.NotificationPlatform.Application\obj\Debug\net8.0\Azka.NotificationPlatform.Application.AssemblyInfoInputs.cache
+C:\Users\E.J.S\source\repos\AZKA_NOTIFICATION_SYSTEM\src\Azka.NotificationPlatform.Application\obj\Debug\net8.0\Azka.NotificationPlatform.Application.AssemblyInfo.cs
+C:\Users\E.J.S\source\repos\AZKA_NOTIFICATION_SYSTEM\src\Azka.NotificationPlatform.Application\obj\Debug\net8.0\Azka.NotificationPlatform.Application.csproj.CoreCompileInputs.cache
+C:\Users\E.J.S\source\repos\AZKA_NOTIFICATION_SYSTEM\src\Azka.NotificationPlatform.Application\obj\Debug\net8.0\Azka.Not.E170C9F6.Up2Date
+C:\Users\E.J.S\source\repos\AZKA_NOTIFICATION_SYSTEM\src\Azka.NotificationPlatform.Application\obj\Debug\net8.0\Azka.NotificationPlatform.Application.dll
+C:\Users\E.J.S\source\repos\AZKA_NOTIFICATION_SYSTEM\src\Azka.NotificationPlatform.Application\obj\Debug\net8.0\refint\Azka.NotificationPlatform.Application.dll
+C:\Users\E.J.S\source\repos\AZKA_NOTIFICATION_SYSTEM\src\Azka.NotificationPlatform.Application\obj\Debug\net8.0\Azka.NotificationPlatform.Application.pdb
+C:\Users\E.J.S\source\repos\AZKA_NOTIFICATION_SYSTEM\src\Azka.NotificationPlatform.Application\obj\Debug\net8.0\ref\Azka.NotificationPlatform.Application.dll

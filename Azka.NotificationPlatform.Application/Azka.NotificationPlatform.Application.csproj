@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>Azka.NotificationPlatform.Application</RootNamespace>
+    <AssemblyName>Azka.NotificationPlatform.Application</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- CQRS dispatcher and pipeline -->
+    <PackageReference Include="MediatR" Version="12.4.1" />
+    <!-- Command / query validation -->
+    <PackageReference Include="FluentValidation" Version="11.11.0" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.11.0" />
+    <!-- DI abstractions only — no concrete container reference -->
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Azka.NotificationPlatform.Domain\Azka.NotificationPlatform.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

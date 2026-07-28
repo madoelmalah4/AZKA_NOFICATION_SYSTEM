@@ -1,0 +1,11 @@
+C:\Users\E.J.S\source\repos\AZKA_NOTIFICATION_SYSTEM\src\Azka.NotificationPlatform.Domain\bin\Debug\net8.0\Azka.NotificationPlatform.Domain.deps.json
+C:\Users\E.J.S\source\repos\AZKA_NOTIFICATION_SYSTEM\src\Azka.NotificationPlatform.Domain\bin\Debug\net8.0\Azka.NotificationPlatform.Domain.dll
+C:\Users\E.J.S\source\repos\AZKA_NOTIFICATION_SYSTEM\src\Azka.NotificationPlatform.Domain\bin\Debug\net8.0\Azka.NotificationPlatform.Domain.pdb
+C:\Users\E.J.S\source\repos\AZKA_NOTIFICATION_SYSTEM\src\Azka.NotificationPlatform.Domain\obj\Debug\net8.0\Azka.NotificationPlatform.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\E.J.S\source\repos\AZKA_NOTIFICATION_SYSTEM\src\Azka.NotificationPlatform.Domain\obj\Debug\net8.0\Azka.NotificationPlatform.Domain.AssemblyInfoInputs.cache
+C:\Users\E.J.S\source\repos\AZKA_NOTIFICATION_SYSTEM\src\Azka.NotificationPlatform.Domain\obj\Debug\net8.0\Azka.NotificationPlatform.Domain.AssemblyInfo.cs
+C:\Users\E.J.S\source\repos\AZKA_NOTIFICATION_SYSTEM\src\Azka.NotificationPlatform.Domain\obj\Debug\net8.0\Azka.NotificationPlatform.Domain.csproj.CoreCompileInputs.cache
+C:\Users\E.J.S\source\repos\AZKA_NOTIFICATION_SYSTEM\src\Azka.NotificationPlatform.Domain\obj\Debug\net8.0\Azka.NotificationPlatform.Domain.dll
+C:\Users\E.J.S\source\repos\AZKA_NOTIFICATION_SYSTEM\src\Azka.NotificationPlatform.Domain\obj\Debug\net8.0\refint\Azka.NotificationPlatform.Domain.dll
+C:\Users\E.J.S\source\repos\AZKA_NOTIFICATION_SYSTEM\src\Azka.NotificationPlatform.Domain\obj\Debug\net8.0\Azka.NotificationPlatform.Domain.pdb
+C:\Users\E.J.S\source\repos\AZKA_NOTIFICATION_SYSTEM\src\Azka.NotificationPlatform.Domain\obj\Debug\net8.0\ref\Azka.NotificationPlatform.Domain.dll
