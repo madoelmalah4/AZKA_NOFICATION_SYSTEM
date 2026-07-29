@@ -19,7 +19,8 @@ public sealed record SendNotificationCommand : IRequest<NotificationDto>
     /// Caller-supplied idempotency key. Must be a non-empty GUID unique to this
     /// business event. The platform uses it to deduplicate retried requests (FR-11).
     /// </summary>
-    public required Guid CorrelationId { get; init; }
+    [System.Text.Json.Serialization.JsonIgnore]
+    public Guid CorrelationId { get; init; } = Guid.NewGuid();
 
     /// <summary>
     /// Business type label used to resolve the matching
@@ -36,19 +37,14 @@ public sealed record SendNotificationCommand : IRequest<NotificationDto>
     /// <summary>Delivery channel for this notification.</summary>
     public required NotificationChannel Channel { get; init; }
 
-    /// <summary>
-    /// IETF BCP-47 language tag used for template resolution (e.g., <c>"en-US"</c>).
-    /// Defaults to English if not supplied.
-    /// </summary>
+    [System.Text.Json.Serialization.JsonIgnore]
     public string Language { get; init; } = "en-US";
 
-    /// <summary>
-    /// Dynamic key-value pairs injected into the template placeholder tokens
-    /// at render time (e.g., <c>{"RecipientName": "Ahmed"}</c>).
-    /// </summary>
+    [System.Text.Json.Serialization.JsonIgnore]
     public IReadOnlyDictionary<string, string> TemplateData { get; init; }
         = new Dictionary<string, string>();
 
-    /// <summary>UTC timestamp when the upstream system raised this request.</summary>
+    /// <summary>UTC timestamp — auto-set server-side.</summary>
+    [System.Text.Json.Serialization.JsonIgnore]
     public DateTime RequestedAt { get; init; } = DateTime.UtcNow;
 }

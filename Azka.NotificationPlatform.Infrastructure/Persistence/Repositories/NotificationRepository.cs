@@ -52,4 +52,20 @@ internal sealed class NotificationRepository : INotificationRepository
 
     public void Update(Notification notification) =>
         _dbContext.Notifications.Update(notification);
+
+    public void Remove(Notification notification) =>
+        _dbContext.Notifications.Remove(notification);
+
+    public async Task<Dictionary<int, int>> GetStatusCountsAsync(CancellationToken cancellationToken = default) =>
+        await _dbContext.Notifications
+            .GroupBy(n => (int)n.Status)
+            .Select(g => new { Status = g.Key, Count = g.Count() })
+            .ToDictionaryAsync(x => x.Status, x => x.Count, cancellationToken);
+
+    public async Task<Dictionary<(int Channel, int Status), int>> GetCountByChannelAndStatusAsync(CancellationToken cancellationToken = default) =>
+        (await _dbContext.Notifications
+            .GroupBy(n => new { Channel = (int)n.Channel, Status = (int)n.Status })
+            .Select(g => new { g.Key.Channel, g.Key.Status, Count = g.Count() })
+            .ToListAsync(cancellationToken))
+            .ToDictionary(x => (x.Channel, x.Status), x => x.Count);
 }

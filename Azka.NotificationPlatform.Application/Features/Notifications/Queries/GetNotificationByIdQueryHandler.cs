@@ -13,10 +13,14 @@ public sealed class GetNotificationByIdQueryHandler
     : IRequestHandler<GetNotificationByIdQuery, NotificationDto?>
 {
     private readonly INotificationRepository _notificationRepo;
+    private readonly IDeliveryAttemptRepository _attemptRepo;
 
-    public GetNotificationByIdQueryHandler(INotificationRepository notificationRepo)
+    public GetNotificationByIdQueryHandler(
+        INotificationRepository notificationRepo,
+        IDeliveryAttemptRepository attemptRepo)
     {
         _notificationRepo = notificationRepo;
+        _attemptRepo = attemptRepo;
     }
 
     public async Task<NotificationDto?> Handle(
@@ -26,10 +30,31 @@ public sealed class GetNotificationByIdQueryHandler
         var notification = await _notificationRepo
             .GetByIdAsync(request.NotificationId, cancellationToken);
 
-        return notification is null ? null : MapToDto(notification);
+        if (notification is null) return null;
+
+        string? externalMessageId = null;
+        var attempts = await _attemptRepo.GetByNotificationIdAsync(notification.NotificationId, cancellationToken);
+        var latestAttempt = attempts.OrderByDescending(a => a.AttemptNumber).FirstOrDefault();
+        if (latestAttempt != null && !string.IsNullOrEmpty(latestAttempt.ProviderResponse))
+        {
+            try
+            {
+                using var doc = System.Text.Json.JsonDocument.Parse(latestAttempt.ProviderResponse);
+                if (doc.RootElement.TryGetProperty("messageId", out var prop))
+                {
+                    externalMessageId = prop.GetString();
+                }
+            }
+            catch
+            {
+                // Fallback if not valid JSON or missing property
+            }
+        }
+
+        return MapToDto(notification, externalMessageId);
     }
 
-    private static NotificationDto MapToDto(Notification n) => new()
+    private static NotificationDto MapToDto(Notification n, string? externalMessageId) => new()
     {
         NotificationId   = n.NotificationId,
         NotificationType = n.NotificationType,
@@ -39,6 +64,7 @@ public sealed class GetNotificationByIdQueryHandler
         Body             = n.Body,
         Status           = n.Status,
         CorrelationId    = n.CorrelationId,
-        RequestedAt      = n.RequestedAt
+        RequestedAt      = n.RequestedAt,
+        ExternalMessageId = externalMessageId
     };
 }

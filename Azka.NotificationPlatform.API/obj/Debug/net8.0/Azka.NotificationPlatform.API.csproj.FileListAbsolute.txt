@@ -157,3 +157,11 @@ C:\Users\E.J.S\source\repos\AZKA_NOTIFICATION_SYSTEM\src\Azka.NotificationPlatfo
 C:\Users\E.J.S\source\repos\AZKA_NOTIFICATION_SYSTEM\src\Azka.NotificationPlatform.API\bin\Debug\net8.0\Newtonsoft.Json.dll
 C:\Users\E.J.S\source\repos\AZKA_NOTIFICATION_SYSTEM\src\Azka.NotificationPlatform.API\bin\Debug\net8.0\SendGrid.dll
 C:\Users\E.J.S\source\repos\AZKA_NOTIFICATION_SYSTEM\src\Azka.NotificationPlatform.API\bin\Debug\net8.0\StarkbankEcdsa.dll
+C:\Users\E.J.S\source\repos\AZKA_NOTIFICATION_SYSTEM\src\Azka.NotificationPlatform.API\obj\Debug\net8.0\Azka.NotificationPlatform.API.sourcelink.json
+C:\Users\E.J.S\source\repos\AZKA_NOTIFICATION_SYSTEM\src\Azka.NotificationPlatform.API\bin\Debug\net8.0\FirebaseAdmin.dll
+C:\Users\E.J.S\source\repos\AZKA_NOTIFICATION_SYSTEM\src\Azka.NotificationPlatform.API\bin\Debug\net8.0\Google.Api.Gax.dll
+C:\Users\E.J.S\source\repos\AZKA_NOTIFICATION_SYSTEM\src\Azka.NotificationPlatform.API\bin\Debug\net8.0\Google.Api.Gax.Rest.dll
+C:\Users\E.J.S\source\repos\AZKA_NOTIFICATION_SYSTEM\src\Azka.NotificationPlatform.API\bin\Debug\net8.0\Google.Apis.dll
+C:\Users\E.J.S\source\repos\AZKA_NOTIFICATION_SYSTEM\src\Azka.NotificationPlatform.API\bin\Debug\net8.0\Google.Apis.Auth.PlatformServices.dll
+C:\Users\E.J.S\source\repos\AZKA_NOTIFICATION_SYSTEM\src\Azka.NotificationPlatform.API\bin\Debug\net8.0\Google.Apis.Auth.dll
+C:\Users\E.J.S\source\repos\AZKA_NOTIFICATION_SYSTEM\src\Azka.NotificationPlatform.API\bin\Debug\net8.0\Google.Apis.Core.dll

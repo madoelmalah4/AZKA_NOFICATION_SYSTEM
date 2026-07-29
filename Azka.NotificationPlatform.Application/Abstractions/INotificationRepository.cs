@@ -30,4 +30,20 @@ public interface INotificationRepository
 
     /// <summary>Marks an existing <see cref="Notification"/> as modified in the unit of work.</summary>
     void Update(Notification notification);
+
+    /// <summary>Deletes an existing <see cref="Notification"/> from the store.</summary>
+    void Remove(Notification notification);
+
+    /// <summary>
+    /// Returns a dictionary of Status (int) → Count for all notifications.
+    /// Used by the dashboard summary endpoint (FR-10).
+    /// </summary>
+    Task<Dictionary<int, int>> GetStatusCountsAsync(CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// Returns notification counts grouped by Channel and Status.
+    /// Key: (Channel int, Status int), Value: Count.
+    /// Used by the per-channel dashboard endpoint (FR-10).
+    /// </summary>
+    Task<Dictionary<(int Channel, int Status), int>> GetCountByChannelAndStatusAsync(CancellationToken cancellationToken = default);
 }

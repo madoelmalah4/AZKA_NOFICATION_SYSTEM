@@ -1,6 +1,7 @@
 using Azka.NotificationPlatform.Application.DTOs;
 using Azka.NotificationPlatform.Application.Features.Notifications.Commands;
 using Azka.NotificationPlatform.Application.Features.Notifications.Queries;
+using Azka.NotificationPlatform.API.Models;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -41,9 +42,15 @@ public sealed class NotificationsController : ControllerBase
     [ProducesResponseType(typeof(NotificationDto), StatusCodes.Status202Accepted)]
     [ProducesResponseType(typeof(ValidationProblemDetails), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> SendNotification(
-        [FromBody] SendNotificationCommand command,
+        [FromBody] SendNotificationRequest request,
         CancellationToken cancellationToken)
     {
+        var command = new SendNotificationCommand
+        {
+            NotificationType = request.NotificationType,
+            Recipient        = request.Recipient,
+            Channel          = request.Channel
+        };
         var result = await _mediator.Send(command, cancellationToken);
         return AcceptedAtAction(
             nameof(GetNotificationById),

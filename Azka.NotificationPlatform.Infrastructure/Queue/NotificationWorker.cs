@@ -36,6 +36,7 @@ public sealed class NotificationWorker : BackgroundService
             {
                 // Dequeue a notification tracking ID (blocks until available)
                 var notificationId = await _queue.DequeueAsync(stoppingToken);
+                _logger.LogInformation("Dequeued notification {NotificationId} for processing.", notificationId);
 
                 // Create scope to resolve scoped EF repositories and unit of work
                 using var scope = _serviceProvider.CreateScope();
@@ -71,6 +72,7 @@ public sealed class NotificationWorker : BackgroundService
                 var providers = await providerRepo.GetActiveByChannelAsync(notification.Channel, stoppingToken);
                 if (providers.Count == 0)
                 {
+                    _logger.LogWarning("Delivery failed: No active providers registered for channel {Channel}.", notification.Channel);
                     notification.MarkAsFailed();
                     notificationRepo.Update(notification);
                     await historyRepo.AddAsync(
@@ -102,9 +104,12 @@ public sealed class NotificationWorker : BackgroundService
 
                     try
                     {
+                        _logger.LogInformation("Dispatching notification {NotificationId} (Attempt {AttemptNum}) using {StrategyName}.", notificationId, attemptNum, strategy.GetType().Name);
                         var (success, response) = await strategy.ExecuteAsync(notification, stoppingToken);
                         deliverySuccess = success;
                         providerResponse = response;
+
+                        _logger.LogInformation("Dispatch result for {NotificationId}: Success={Success}, Response={Response}", notificationId, success, response);
 
                         attempt.Complete(success ? "Success" : "Failure", DateTime.UtcNow, response);
                         attemptRepo.Update(attempt);

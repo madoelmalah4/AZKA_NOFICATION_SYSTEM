@@ -24,6 +24,8 @@ public static class DependencyInjection
             cfg.RegisterServicesFromAssembly(typeof(DependencyInjection).Assembly);
         });
 
+        services.AddScoped<Azka.NotificationPlatform.Application.Abstractions.ITemplateRendererService, Azka.NotificationPlatform.Application.Services.TemplateRendererService>();
+
         // Register all FluentValidation validators discovered in this assembly.
         services.AddValidatorsFromAssembly(typeof(SendNotificationCommandValidator).Assembly);
 

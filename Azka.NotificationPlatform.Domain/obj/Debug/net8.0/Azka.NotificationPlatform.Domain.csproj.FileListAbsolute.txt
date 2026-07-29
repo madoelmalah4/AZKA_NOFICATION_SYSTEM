@@ -5,6 +5,7 @@ C:\Users\E.J.S\source\repos\AZKA_NOTIFICATION_SYSTEM\src\Azka.NotificationPlatfo
 C:\Users\E.J.S\source\repos\AZKA_NOTIFICATION_SYSTEM\src\Azka.NotificationPlatform.Domain\obj\Debug\net8.0\Azka.NotificationPlatform.Domain.AssemblyInfoInputs.cache
 C:\Users\E.J.S\source\repos\AZKA_NOTIFICATION_SYSTEM\src\Azka.NotificationPlatform.Domain\obj\Debug\net8.0\Azka.NotificationPlatform.Domain.AssemblyInfo.cs
 C:\Users\E.J.S\source\repos\AZKA_NOTIFICATION_SYSTEM\src\Azka.NotificationPlatform.Domain\obj\Debug\net8.0\Azka.NotificationPlatform.Domain.csproj.CoreCompileInputs.cache
+C:\Users\E.J.S\source\repos\AZKA_NOTIFICATION_SYSTEM\src\Azka.NotificationPlatform.Domain\obj\Debug\net8.0\Azka.NotificationPlatform.Domain.sourcelink.json
 C:\Users\E.J.S\source\repos\AZKA_NOTIFICATION_SYSTEM\src\Azka.NotificationPlatform.Domain\obj\Debug\net8.0\Azka.NotificationPlatform.Domain.dll
 C:\Users\E.J.S\source\repos\AZKA_NOTIFICATION_SYSTEM\src\Azka.NotificationPlatform.Domain\obj\Debug\net8.0\refint\Azka.NotificationPlatform.Domain.dll
 C:\Users\E.J.S\source\repos\AZKA_NOTIFICATION_SYSTEM\src\Azka.NotificationPlatform.Domain\obj\Debug\net8.0\Azka.NotificationPlatform.Domain.pdb

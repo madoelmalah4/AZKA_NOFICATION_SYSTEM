@@ -11,7 +11,6 @@ builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);
 
 // Register design-time/dev stubs for required application services
-builder.Services.AddTransient<Azka.NotificationPlatform.Application.Abstractions.ITemplateRendererService, Azka.NotificationPlatform.API.Stubs.StubTemplateRendererService>();
 
 // ASP.NET Core
 builder.Services.AddControllers();

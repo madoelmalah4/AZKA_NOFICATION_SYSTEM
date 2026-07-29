@@ -37,26 +37,8 @@ public sealed class CancelNotificationCommandHandler
         if (notification is null)
             return false;
 
-        try
-        {
-            notification.Cancel();
-        }
-        catch (InvalidOperationException)
-        {
-            // Already in a terminal state — treat as a no-op and return false.
-            return false;
-        }
-
-        _notificationRepo.Update(notification);
-
-        await _historyRepo.AddAsync(
-            new NotificationHistory(
-                historyId:      Guid.NewGuid(),
-                notificationId: notification.NotificationId,
-                status:         NotificationStatus.Cancelled,
-                changedAt:      DateTime.UtcNow,
-                remarks:        request.Reason),
-            cancellationToken);
+        // Perform actual deletion from the database
+        _notificationRepo.Remove(notification);
 
         await _unitOfWork.SaveChangesAsync(cancellationToken);
         return true;
