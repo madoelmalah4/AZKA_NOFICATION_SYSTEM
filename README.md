@@ -1,134 +1,106 @@
-#  Enterprise Notification Delivery Platform
+# Enterprise Notification Delivery Platform
 
-A centralized notification delivery platform that provides a unified API for sending and managing notifications across multiple channels, including **Email, SMS, and Push Notifications**.
+A centralized notification delivery platform that provides a unified API for sending and managing notifications across multiple channels, including Email, SMS, and Push Notifications.
 
-The platform is designed with scalability, reliability, and maintainability in mind, following **Clean Architecture** principles and asynchronous background processing.
+The platform is designed with scalability, reliability, and maintainability in mind, following Clean Architecture principles and asynchronous background processing.
 
-##  Features
+## Features
 
--  Send notifications through multiple channels:
-  - Email
-  - SMS
-  - Push Notifications
--  Notification request management
--  Asynchronous notification processing using a queue
--  Background notification worker
--  Notification templates
--  Notification provider abstraction
--  Operational dashboards and notification statistics
--  Channel-based notification summaries
--  Request validation and error handling
--  Unit testing
--  SQL Server database with Entity Framework Core
--  Firebase Cloud Messaging integration for push notifications
--  SendGrid integration for email notifications
+- Send notifications through Email, SMS, and Push Notifications.
+- Notification request management.
+- Notification templates.
+- Notification provider abstraction.
+- Asynchronous notification processing using a queue.
+- Background worker for continuous notification processing.
+- Delivery attempts and notification history tracking.
+- Operational dashboards for monitoring notification status.
+- Channel-based notification summaries.
+- Request validation and error handling.
+- Unit testing.
+- SQL Server database using Entity Framework Core.
+- Firebase Cloud Messaging integration for Push Notifications.
+- SendGrid integration for Email Notifications.
 
-## 🏗️ Architecture
+## Architecture
 
-The project follows **Clean Architecture** principles, separating responsibilities into different layers:
+The project follows Clean Architecture principles to keep the application maintainable, testable, and easy to extend.
 
-```text
-├── API
-├── Application
-├── Domain
-├── Infrastructure
-└── Tests
-API
+The solution is divided into:
 
-Responsible for HTTP endpoints, controllers, request handling, and API configuration.
+- API – Handles HTTP requests, controllers, and API configuration.
+- Application – Contains business logic, services, DTOs, interfaces, and application abstractions.
+- Domain – Contains the core entities, enums, and domain models.
+- Infrastructure – Handles database access, external notification providers, queue implementation, and other infrastructure services.
+- Tests – Contains unit tests for the application's components and business logic.
 
-Application
+## Notification Processing
 
-Contains business logic, DTOs, interfaces, services, and application-level abstractions.
+Notifications are processed asynchronously using a queue-based architecture.
 
-Domain
+When a notification request is received, the API adds it to the notification queue. A background worker continuously monitors the queue and processes pending notifications through the appropriate provider.
 
-Contains the core entities, enums, and domain models.
+This approach prevents notification delivery from blocking the API request and allows the system to handle multiple notification requests efficiently.
 
-Infrastructure
+## Dashboard
 
-Responsible for database access, external notification providers, queue implementation, and infrastructure services.
+The platform provides operational dashboards to monitor notification delivery and system performance.
 
-Tests
+### Notification Summary
 
-Contains unit tests covering the application's main components and business logic.
+The dashboard provides:
 
- Notification Processing
+- Total Notifications
+- Pending Notifications
+- Processing Notifications
+- Delivered Notifications
+- Failed Notifications
+- Success Rate
+- Failure Rate
 
-The platform uses an asynchronous queue-based architecture to process notifications efficiently.
+### Channel Summary
 
-Client
-   ↓
-Notification API
-   ↓
-Notification Queue
-   ↓
-Background Worker
-   ↓
-Notification Provider
-   ↓
-Email / SMS / Push
+Notifications can also be monitored based on their delivery channel:
 
-The queue allows notification requests to be processed asynchronously without blocking the API request.
+- Email
+- SMS
+- Push
 
-A background worker continuously monitors the queue and processes pending notification requests.
+## Unit Testing
 
- Unit Testing
+The project includes a dedicated unit test project covering important application components and business scenarios.
 
-The project includes unit tests for important application components and business scenarios.
+Tests use mocking where required to isolate dependencies and verify the behavior of the application independently.
 
-The tests are organized in a separate test project and use mocking where required to isolate dependencies and verify application behavior.
+## Database
 
- Database
-
-The application uses:
-
-SQL Server
-Entity Framework Core
-EF Core Migrations
+The project uses SQL Server with Entity Framework Core for data persistence.
 
 The database manages notifications, notification templates, notification providers, delivery attempts, and notification history.
 
-A database creation script is also included in the repository.
+The repository also includes a database script for creating the required database structure.
 
- Operational Dashboard
+## Technologies
 
-The platform provides operational dashboards for monitoring notification delivery.
+- C#
+- ASP.NET Core Web API
+- Entity Framework Core
+- SQL Server
+- Clean Architecture
+- Background Services
+- System.Threading.Channels
+- Unit Testing
+- Swagger / OpenAPI
+- Firebase Cloud Messaging
+- SendGrid
 
-Notification Summary
-Total Notifications
-Pending
-Processing
-Delivered
-Failed
-Success Rate
-Failure Rate
-Channel Summary
-
-Notifications are grouped by:
-
-Email
-SMS
-Push
-🛠️ Technologies
-C#
-ASP.NET Core Web API
-Entity Framework Core
-SQL Server
-Clean Architecture
-Background Services
-System.Threading.Channels
-Unit Testing
-Swagger / OpenAPI
-Firebase Cloud Messaging
-SendGrid
-Team
+## Team
 
 This project was developed by:
 
-Mohammed Islam
-Marwan Mamdouh
-Jana Mostafa
- Project Status
+- Mohammed Islam
+- Marwan Mamdouh
+- Jana Mostafa
+
+## Project Status
 
 Completed as part of an Enterprise Notification Delivery Platform assessment.
