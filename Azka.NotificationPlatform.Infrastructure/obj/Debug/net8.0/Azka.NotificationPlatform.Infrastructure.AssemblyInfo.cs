@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Azka.NotificationPlatform.Infrastructure")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5113ce28d082f1742f44c4a1fe0f9a14a7f753f4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+84f4063dd18e5e57c99906b9d2c78d13d623c874")]
 [assembly: System.Reflection.AssemblyProductAttribute("Azka.NotificationPlatform.Infrastructure")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Azka.NotificationPlatform.Infrastructure")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
