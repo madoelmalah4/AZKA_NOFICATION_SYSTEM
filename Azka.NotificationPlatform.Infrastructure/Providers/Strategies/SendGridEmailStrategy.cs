@@ -25,12 +25,18 @@ public sealed class SendGridEmailStrategy : INotificationProviderStrategy
     }
 
     /// <inheritdoc />
-    public async Task<(bool IsSuccess, string ProviderResponse)> ExecuteAsync(Notification notification, CancellationToken cancellationToken)
+    public async Task<(bool IsSuccess, string ProviderResponse, bool IsRecoverable)> ExecuteAsync(Notification notification, CancellationToken cancellationToken)
     {
         if (string.IsNullOrWhiteSpace(_settings.ApiKey))
         {
             _logger.LogError("SendGrid ApiKey configuration is missing or empty.");
-            return (false, "SendGrid ApiKey configuration is missing or empty.");
+            return (false, "SendGrid ApiKey configuration is missing or empty.", false);
+        }
+
+        if (string.IsNullOrWhiteSpace(notification.Recipient) || !notification.Recipient.Contains('@'))
+        {
+            _logger.LogError("Invalid email recipient: {Recipient}", notification.Recipient);
+            return (false, $"Invalid recipient email address '{notification.Recipient}'.", false);
         }
 
         try
@@ -41,19 +47,25 @@ public sealed class SendGridEmailStrategy : INotificationProviderStrategy
             var to = new EmailAddress(notification.Recipient);
             var subject = notification.Subject ?? "Notification Alert";
             
-            // Assume HTML content for now. A more advanced template renderer could flag HTML vs Text,
-            // but for standard enterprise platforms, HTML is the baseline.
-            var plainTextContent = notification.Body; // Fallback plain text
+            var plainTextContent = notification.Body;
             var htmlContent = notification.Body;
 
             var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
             
             var response = await client.SendEmailAsync(msg, cancellationToken);
-            
             var responseBody = await response.Body.ReadAsStringAsync();
             bool isSuccess = response.IsSuccessStatusCode;
 
-            string diagnosticResponse = $"{{\"statusCode\":\"{response.StatusCode}\",\"body\":{responseBody ?? "\"\"\"\""}}}";
+            int statusCodeInt = (int)response.StatusCode;
+            bool isRecoverable = !isSuccess && (statusCodeInt == 429 || statusCodeInt >= 500);
+
+            var diagObject = new
+            {
+                statusCode = response.StatusCode,
+                statusCodeInt = statusCodeInt,
+                body = responseBody
+            };
+            string diagnosticResponse = System.Text.Json.JsonSerializer.Serialize(diagObject);
             
             if (isSuccess)
             {
@@ -61,15 +73,25 @@ public sealed class SendGridEmailStrategy : INotificationProviderStrategy
             }
             else
             {
-                _logger.LogError("SendGrid returned non-success status code {StatusCode}. Body: {Body}", response.StatusCode, responseBody);
+                _logger.LogError("SendGrid returned non-success status code {StatusCode}. Recoverable: {IsRecoverable}. Body: {Body}", response.StatusCode, isRecoverable, responseBody);
             }
 
-            return (isSuccess, diagnosticResponse);
+            return (isSuccess, diagnosticResponse, isRecoverable);
+        }
+        catch (FormatException ex)
+        {
+            _logger.LogError(ex, "Format exception for email recipient {Recipient}", notification.Recipient);
+            return (false, $"{{\"error\":\"{ex.Message}\"}}", false);
+        }
+        catch (ArgumentException ex)
+        {
+            _logger.LogError(ex, "Argument exception while building SendGrid email payload.");
+            return (false, $"{{\"error\":\"{ex.Message}\"}}", false);
         }
         catch (Exception ex)
         {
             _logger.LogError(ex, "Exception occurred while sending email via SendGrid.");
-            return (false, $"{{\"error\":\"{ex.Message}\"}}");
+            return (false, $"{{\"error\":\"{ex.Message}\"}}", true);
         }
     }
 }

@@ -27,4 +27,11 @@ public interface INotificationProviderRepository
 
     /// <summary>Marks a provider as modified in the unit of work.</summary>
     void Update(NotificationProvider provider);
+
+    /// <summary>
+    /// Returns per-provider delivery statistics by joining providers with notifications
+    /// through the shared channel, and with delivery attempts.
+    /// Each entry contains the provider's identity plus aggregated delivery counts.
+    /// </summary>
+    Task<IReadOnlyList<ProviderStatEntry>> GetProviderStatisticsAsync(CancellationToken cancellationToken = default);
 }

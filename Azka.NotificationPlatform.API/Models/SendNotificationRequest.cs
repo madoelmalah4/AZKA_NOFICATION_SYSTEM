@@ -31,4 +31,10 @@ public sealed class SendNotificationRequest
     /// </summary>
     /// <example>0</example>
     public required NotificationChannel Channel { get; init; }
+
+    /// <summary>
+    /// Optional upstream application or system name submitting the notification.
+    /// </summary>
+    /// <example>PaymentSystem</example>
+    public string? ApplicationName { get; init; }
 }

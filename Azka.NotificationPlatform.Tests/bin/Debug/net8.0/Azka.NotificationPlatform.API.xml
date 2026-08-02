@@ -1,0 +1,153 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Azka.NotificationPlatform.API</name>
+    </assembly>
+    <members>
+        <member name="T:Azka.NotificationPlatform.API.Controllers.DashboardController">
+            <summary>
+            REST API controller exposing dashboard analytics and platform summaries.
+            </summary>
+        </member>
+        <member name="M:Azka.NotificationPlatform.API.Controllers.DashboardController.GetNotificationsSummary(System.Threading.CancellationToken)">
+            <summary>
+            Provides an overall summary of all notifications (FR-10).
+            </summary>
+        </member>
+        <member name="M:Azka.NotificationPlatform.API.Controllers.DashboardController.GetChannelsSummary(System.Threading.CancellationToken)">
+            <summary>
+            Provides a summary of notifications grouped by channel (FR-10).
+            </summary>
+        </member>
+        <member name="M:Azka.NotificationPlatform.API.Controllers.DashboardController.GetProvidersSummary(System.Threading.CancellationToken)">
+            <summary>
+            Provides delivery statistics grouped by registered notification provider (FR-10).
+            Each entry shows the provider's name, channel, activation state, and aggregated
+            delivery counts (total, delivered, failed, attempts) with a derived success rate.
+            </summary>
+        </member>
+        <member name="T:Azka.NotificationPlatform.API.Controllers.NotificationsController">
+            <summary>
+            REST API controller exposing notification lifecycle operations.
+            All business logic is delegated to the Application Layer via MediatR.
+            </summary>
+        </member>
+        <member name="M:Azka.NotificationPlatform.API.Controllers.NotificationsController.SendNotification(Azka.NotificationPlatform.API.Models.SendNotificationRequest,System.Threading.CancellationToken)">
+            <summary>
+            Submits a new notification request to the platform for asynchronous processing.
+            </summary>
+            <remarks>
+            Idempotent: if a notification with the same <c>CorrelationId</c> already exists,
+            the existing record is returned without creating a duplicate (FR-11).
+            </remarks>
+            <param name="request">The notification submission request.</param>
+            <param name="cancellationToken">Request cancellation token.</param>
+            <returns>
+            <c>202 Accepted</c> with the created/existing <see cref="T:Azka.NotificationPlatform.Application.DTOs.NotificationDto"/>;
+            <c>400 Bad Request</c> if the command fails validation.
+            </returns>
+        </member>
+        <member name="M:Azka.NotificationPlatform.API.Controllers.NotificationsController.SearchNotifications(Azka.NotificationPlatform.Application.Features.Notifications.Queries.SearchNotificationsQuery,System.Threading.CancellationToken)">
+            <summary>
+            Searches and filters notifications with optional query parameters and database-level pagination (FR-9).
+            </summary>
+            <param name="query">Filter parameters and pagination options.</param>
+            <param name="cancellationToken">Request cancellation token.</param>
+            <returns><c>200 OK</c> with <see cref="T:Azka.NotificationPlatform.Application.DTOs.PagedResult`1"/>.</returns>
+        </member>
+        <member name="M:Azka.NotificationPlatform.API.Controllers.NotificationsController.GetNotificationById(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Retrieves a notification by its platform-assigned ID.
+            </summary>
+            <param name="id">The <see cref="P:Azka.NotificationPlatform.Application.DTOs.NotificationDto.NotificationId"/>.</param>
+            <param name="cancellationToken">Request cancellation token.</param>
+            <returns>
+            <c>200 OK</c> with the <see cref="T:Azka.NotificationPlatform.Application.DTOs.NotificationDto"/>; <c>404 Not Found</c> if not found.
+            </returns>
+        </member>
+        <member name="M:Azka.NotificationPlatform.API.Controllers.NotificationsController.GetNotificationHistory(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Returns the complete status-transition audit trail for a notification (FR-7).
+            </summary>
+            <param name="id">The parent notification ID.</param>
+            <param name="cancellationToken">Request cancellation token.</param>
+            <returns><c>200 OK</c> with an ordered list of <see cref="T:Azka.NotificationPlatform.Application.DTOs.NotificationHistoryDto"/>.</returns>
+        </member>
+        <member name="M:Azka.NotificationPlatform.API.Controllers.NotificationsController.CancelNotification(System.Guid,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Cancels an in-flight notification that has not yet reached a terminal state.
+            </summary>
+            <param name="id">The notification to cancel.</param>
+            <param name="reason">Optional human-readable cancellation reason.</param>
+            <param name="cancellationToken">Request cancellation token.</param>
+            <returns>
+            <c>204 No Content</c> on success; <c>404 Not Found</c> if not found or
+            already in a terminal state.
+            </returns>
+        </member>
+        <member name="T:Azka.NotificationPlatform.API.Controllers.TemplatesController">
+            <summary>
+            REST API controller exposing read-only template management operations.
+            Write operations (create, publish new version, deactivate) are intentionally
+            excluded from the public API surface and are performed via admin tooling or
+            migration scripts in the current iteration.
+            </summary>
+        </member>
+        <member name="M:Azka.NotificationPlatform.API.Controllers.TemplatesController.GetTemplates(System.Nullable{Azka.NotificationPlatform.Domain.Enums.NotificationChannel},System.Threading.CancellationToken)">
+            <summary>
+            Returns all notification templates, optionally filtered by channel.
+            </summary>
+            <param name="channel">
+            Optional channel filter: <c>0</c> = Email, <c>1</c> = SMS, <c>2</c> = Push.
+            </param>
+            <param name="cancellationToken">Request cancellation token.</param>
+            <returns><c>200 OK</c> with a list of <see cref="T:Azka.NotificationPlatform.Application.DTOs.NotificationTemplateDto"/>.</returns>
+        </member>
+        <member name="M:Azka.NotificationPlatform.API.Controllers.TemplatesController.GetTemplateById(System.Guid,System.Threading.CancellationToken)">
+            <summary>
+            Returns a single template by its surrogate key.
+            </summary>
+            <param name="id">The <see cref="P:Azka.NotificationPlatform.Application.DTOs.NotificationTemplateDto.TemplateId"/>.</param>
+            <param name="cancellationToken">Request cancellation token.</param>
+            <returns>
+            <c>200 OK</c> with the <see cref="T:Azka.NotificationPlatform.Application.DTOs.NotificationTemplateDto"/>; <c>404 Not Found</c> if absent.
+            </returns>
+        </member>
+        <member name="T:Azka.NotificationPlatform.API.Models.SendNotificationRequest">
+            <summary>
+            Request body for submitting a notification.
+            </summary>
+        </member>
+        <member name="P:Azka.NotificationPlatform.API.Models.SendNotificationRequest.NotificationType">
+            <summary>
+            The template to send. Choose one of the pre-built templates below:
+            <br/>• <b>UserRegistration</b>  — Welcome email/SMS sent on new account creation
+            <br/>• <b>PasswordReset</b>     — Password reset instructions
+            <br/>• <b>OrderConfirmation</b> — Order receipt confirmation
+            <br/>• <b>SystemAlert</b>       — Critical system alert (Email only)
+            </summary>
+            <example>UserRegistration</example>
+        </member>
+        <member name="P:Azka.NotificationPlatform.API.Models.SendNotificationRequest.Recipient">
+            <summary>
+            Recipient address.
+            <br/>• Channel <b>0 (Email)</b>: e.g. <c>user@example.com</c>
+            <br/>• Channel <b>1 (SMS)</b>: E.164 number e.g. <c>+9665XXXXXXXX</c>
+            <br/>• Channel <b>2 (Push)</b>: FCM device token
+            </summary>
+            <example>user@example.com</example>
+        </member>
+        <member name="P:Azka.NotificationPlatform.API.Models.SendNotificationRequest.Channel">
+            <summary>
+            Delivery channel — <b>0</b> = Email · <b>1</b> = SMS · <b>2</b> = Push
+            </summary>
+            <example>0</example>
+        </member>
+        <member name="P:Azka.NotificationPlatform.API.Models.SendNotificationRequest.ApplicationName">
+            <summary>
+            Optional upstream application or system name submitting the notification.
+            </summary>
+            <example>PaymentSystem</example>
+        </member>
+    </members>
+</doc>

@@ -5,11 +5,11 @@ namespace Azka.NotificationPlatform.Infrastructure.Providers.Strategies;
 
 public sealed class TwilioSmsStrategy : INotificationProviderStrategy
 {
-    public Task<(bool IsSuccess, string ProviderResponse)> ExecuteAsync(Notification notification, CancellationToken cancellationToken)
+    public Task<(bool IsSuccess, string ProviderResponse, bool IsRecoverable)> ExecuteAsync(Notification notification, CancellationToken cancellationToken)
     {
         // Mocking SMS gateway delivery
         bool isSuccess = true;
         string response = $"{{\"sid\":\"SM{Guid.NewGuid():N}\",\"status\":\"sent\",\"provider\":\"Twilio\"}}";
-        return Task.FromResult((isSuccess, response));
+        return Task.FromResult((isSuccess, response, true));
     }
 }

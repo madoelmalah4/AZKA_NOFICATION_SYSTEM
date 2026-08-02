@@ -32,7 +32,7 @@ public sealed class NotificationsController : ControllerBase
     /// Idempotent: if a notification with the same <c>CorrelationId</c> already exists,
     /// the existing record is returned without creating a duplicate (FR-11).
     /// </remarks>
-    /// <param name="command">The notification submission command.</param>
+    /// <param name="request">The notification submission request.</param>
     /// <param name="cancellationToken">Request cancellation token.</param>
     /// <returns>
     /// <c>202 Accepted</c> with the created/existing <see cref="NotificationDto"/>;
@@ -49,13 +49,32 @@ public sealed class NotificationsController : ControllerBase
         {
             NotificationType = request.NotificationType,
             Recipient        = request.Recipient,
-            Channel          = request.Channel
+            Channel          = request.Channel,
+            ApplicationName  = request.ApplicationName
         };
         var result = await _mediator.Send(command, cancellationToken);
         return AcceptedAtAction(
             nameof(GetNotificationById),
             new { id = result.NotificationId },
             result);
+    }
+
+    // ── GET /api/notifications ────────────────────────────────────────────────
+
+    /// <summary>
+    /// Searches and filters notifications with optional query parameters and database-level pagination (FR-9).
+    /// </summary>
+    /// <param name="query">Filter parameters and pagination options.</param>
+    /// <param name="cancellationToken">Request cancellation token.</param>
+    /// <returns><c>200 OK</c> with <see cref="PagedResult{NotificationDto}"/>.</returns>
+    [HttpGet]
+    [ProducesResponseType(typeof(PagedResult<NotificationDto>), StatusCodes.Status200OK)]
+    public async Task<IActionResult> SearchNotifications(
+        [FromQuery] SearchNotificationsQuery query,
+        CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(query, cancellationToken);
+        return Ok(result);
     }
 
     // ── GET /api/notifications/{id} ───────────────────────────────────────────

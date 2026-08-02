@@ -7,6 +7,8 @@
     <RootNamespace>Azka.NotificationPlatform.API</RootNamespace>
     <AssemblyName>Azka.NotificationPlatform.API</AssemblyName>
     <UserSecretsId>azka-notification-platform-api</UserSecretsId>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);1591</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>

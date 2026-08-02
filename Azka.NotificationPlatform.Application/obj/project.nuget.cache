@@ -1,14 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "N9k6XOFi+tU=",
+  "dgSpecHash": "wLk8Pkcoo64=",
   "success": true,
-  "projectFilePath": "C:\\Users\\E.J.S\\source\\repos\\AZKA_NOTIFICATION_SYSTEM\\src\\Azka.NotificationPlatform.Application\\Azka.NotificationPlatform.Application.csproj",
+  "projectFilePath": "C:\\Users\\jana0\\OneDrive\\Desktop\\AZKA_NOFICATION_SYSTEM\\Azka.NotificationPlatform.Application\\Azka.NotificationPlatform.Application.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\E.J.S\\.nuget\\packages\\fluentvalidation\\11.11.0\\fluentvalidation.11.11.0.nupkg.sha512",
-    "C:\\Users\\E.J.S\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.11.0\\fluentvalidation.dependencyinjectionextensions.11.11.0.nupkg.sha512",
-    "C:\\Users\\E.J.S\\.nuget\\packages\\mediatr\\12.4.1\\mediatr.12.4.1.nupkg.sha512",
-    "C:\\Users\\E.J.S\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
-    "C:\\Users\\E.J.S\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.2\\microsoft.extensions.dependencyinjection.abstractions.8.0.2.nupkg.sha512"
+    "C:\\Users\\jana0\\.nuget\\packages\\fluentvalidation\\11.11.0\\fluentvalidation.11.11.0.nupkg.sha512",
+    "C:\\Users\\jana0\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.11.0\\fluentvalidation.dependencyinjectionextensions.11.11.0.nupkg.sha512",
+    "C:\\Users\\jana0\\.nuget\\packages\\mediatr\\12.4.1\\mediatr.12.4.1.nupkg.sha512",
+    "C:\\Users\\jana0\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
+    "C:\\Users\\jana0\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.2\\microsoft.extensions.dependencyinjection.abstractions.8.0.2.nupkg.sha512"
   ],
   "logs": []
 }

@@ -68,4 +68,92 @@ internal sealed class NotificationRepository : INotificationRepository
             .Select(g => new { g.Key.Channel, g.Key.Status, Count = g.Count() })
             .ToListAsync(cancellationToken))
             .ToDictionary(x => (x.Channel, x.Status), x => x.Count);
+
+    public async Task<Application.DTOs.PagedResult<Application.DTOs.NotificationDto>> SearchAsync(
+        Application.Features.Notifications.Queries.SearchNotificationsQuery query, CancellationToken cancellationToken = default)
+    {
+        var pageNumber = query.PageNumber <= 0 ? 1 : query.PageNumber;
+        var pageSize = query.PageSize <= 0 ? 20 : query.PageSize;
+
+        var queryable = _dbContext.Notifications.AsNoTracking().AsQueryable();
+
+        if (query.NotificationId.HasValue && query.NotificationId.Value != Guid.Empty)
+        {
+            queryable = queryable.Where(n => n.NotificationId == query.NotificationId.Value);
+        }
+
+        if (!string.IsNullOrWhiteSpace(query.Recipient))
+        {
+            var recipientClean = query.Recipient.Trim();
+            queryable = queryable.Where(n => n.Recipient.Contains(recipientClean));
+        }
+
+        if (query.Channel.HasValue)
+        {
+            queryable = queryable.Where(n => n.Channel == query.Channel.Value);
+        }
+
+        if (query.Status.HasValue)
+        {
+            queryable = queryable.Where(n => n.Status == query.Status.Value);
+        }
+
+        if (!string.IsNullOrWhiteSpace(query.NotificationType))
+        {
+            var typeClean = query.NotificationType.Trim();
+            queryable = queryable.Where(n => n.NotificationType.Contains(typeClean));
+        }
+
+        if (query.FromDate.HasValue)
+        {
+            queryable = queryable.Where(n => n.RequestedAt >= query.FromDate.Value);
+        }
+
+        if (query.ToDate.HasValue)
+        {
+            queryable = queryable.Where(n => n.RequestedAt <= query.ToDate.Value);
+        }
+
+        if (query.CorrelationId.HasValue && query.CorrelationId.Value != Guid.Empty)
+        {
+            queryable = queryable.Where(n => n.CorrelationId == query.CorrelationId.Value);
+        }
+
+        if (!string.IsNullOrWhiteSpace(query.ApplicationName))
+        {
+            var appClean = query.ApplicationName.Trim();
+            queryable = queryable.Where(n => n.ApplicationName != null && n.ApplicationName.Contains(appClean));
+        }
+
+        var totalCount = await queryable.CountAsync(cancellationToken);
+        var totalPages = totalCount == 0 ? 0 : (int)Math.Ceiling((double)totalCount / pageSize);
+
+        var items = await queryable
+            .OrderByDescending(n => n.RequestedAt)
+            .Skip((pageNumber - 1) * pageSize)
+            .Take(pageSize)
+            .Select(n => new Application.DTOs.NotificationDto
+            {
+                NotificationId = n.NotificationId,
+                NotificationType = n.NotificationType,
+                Recipient = n.Recipient,
+                Channel = n.Channel,
+                Subject = n.Subject,
+                Body = n.Body,
+                Status = n.Status,
+                CorrelationId = n.CorrelationId,
+                RequestedAt = n.RequestedAt,
+                ApplicationName = n.ApplicationName
+            })
+            .ToListAsync(cancellationToken);
+
+        return new Application.DTOs.PagedResult<Application.DTOs.NotificationDto>
+        {
+            Items = items,
+            PageNumber = pageNumber,
+            PageSize = pageSize,
+            TotalCount = totalCount,
+            TotalPages = totalPages
+        };
+    }
 }

@@ -37,5 +37,26 @@ internal sealed class NotificationProviderConfiguration : IEntityTypeConfigurati
         // Index for the active-by-channel provider selection query
         builder.HasIndex(p => new { p.Channel, p.IsActive })
                .HasDatabaseName("IX_NotificationProviders_Channel_IsActive");
+
+        builder.HasData(
+            new NotificationProvider(
+                Guid.Parse("b1111111-1111-1111-1111-111111111111"),
+                "SendGrid",
+                Domain.Enums.NotificationChannel.Email,
+                isActive: true
+            ),
+            new NotificationProvider(
+                Guid.Parse("b2222222-2222-2222-2222-222222222222"),
+                "Twilio",
+                Domain.Enums.NotificationChannel.SMS,
+                isActive: true
+            ),
+            new NotificationProvider(
+                Guid.Parse("b3333333-3333-3333-3333-333333333333"),
+                "Firebase",
+                Domain.Enums.NotificationChannel.Push,
+                isActive: true
+            )
+        );
     }
 }

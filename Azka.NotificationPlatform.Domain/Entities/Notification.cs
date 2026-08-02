@@ -78,6 +78,11 @@ public sealed class Notification
     /// </summary>
     public DateTime RequestedAt { get; init; }
 
+    /// <summary>
+    /// Optional label identifying the upstream application or subsystem that generated the notification.
+    /// </summary>
+    public string? ApplicationName { get; private set; }
+
     // -------------------------------------------------------------------------
     // Construction
     // -------------------------------------------------------------------------
@@ -94,6 +99,7 @@ public sealed class Notification
     /// <param name="correlationId">Caller-supplied idempotency key.</param>
     /// <param name="requestedAt">UTC time the request was raised by the caller.</param>
     /// <param name="subject">Optional subject line (required for Email).</param>
+    /// <param name="applicationName">Optional application or system name.</param>
     public Notification(
         Guid notificationId,
         string notificationType,
@@ -102,7 +108,8 @@ public sealed class Notification
         string body,
         Guid correlationId,
         DateTime requestedAt,
-        string? subject = null)
+        string? subject = null,
+        string? applicationName = null)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(notificationType, nameof(notificationType));
         ArgumentException.ThrowIfNullOrWhiteSpace(recipient, nameof(recipient));
@@ -117,6 +124,7 @@ public sealed class Notification
         Body             = body;
         Status           = NotificationStatus.Pending;
         RequestedAt      = requestedAt;
+        ApplicationName  = applicationName;
     }
 
     // -------------------------------------------------------------------------

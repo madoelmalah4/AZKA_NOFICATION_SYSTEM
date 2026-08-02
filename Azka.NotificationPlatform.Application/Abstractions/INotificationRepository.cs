@@ -41,6 +41,13 @@ public interface INotificationRepository
     Task<Dictionary<int, int>> GetStatusCountsAsync(CancellationToken cancellationToken = default);
 
     /// <summary>
+    /// Searches and filters notifications with database-level pagination (FR-9).
+    /// </summary>
+    Task<DTOs.PagedResult<DTOs.NotificationDto>> SearchAsync(
+        Features.Notifications.Queries.SearchNotificationsQuery query,
+        CancellationToken cancellationToken = default);
+
+    /// <summary>
     /// Returns notification counts grouped by Channel and Status.
     /// Key: (Channel int, Status int), Value: Count.
     /// Used by the per-channel dashboard endpoint (FR-10).

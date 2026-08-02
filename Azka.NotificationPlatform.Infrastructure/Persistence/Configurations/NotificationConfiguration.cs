@@ -50,6 +50,9 @@ internal sealed class NotificationConfiguration : IEntityTypeConfiguration<Notif
         builder.Property(n => n.RequestedAt)
                .IsRequired();
 
+        builder.Property(n => n.ApplicationName)
+               .HasMaxLength(100);
+
         // Unique constraint on CorrelationId — the database-level guard for FR-11
         builder.HasIndex(n => n.CorrelationId)
                .IsUnique()
@@ -58,5 +61,8 @@ internal sealed class NotificationConfiguration : IEntityTypeConfiguration<Notif
         // Covering index for status-based queue polling
         builder.HasIndex(n => n.Status)
                .HasDatabaseName("IX_Notifications_Status");
+
+        builder.HasIndex(n => n.ApplicationName)
+               .HasDatabaseName("IX_Notifications_ApplicationName");
     }
 }
