@@ -22,7 +22,7 @@ public sealed class FirebasePushStrategy : INotificationProviderStrategy
         _logger = logger;
     }
 
-    public async Task<(bool IsSuccess, string ProviderResponse)> ExecuteAsync(
+    public async Task<(bool IsSuccess, string ProviderResponse, bool IsRecoverable)> ExecuteAsync(
         Domain.Entities.Notification notification,
         CancellationToken cancellationToken)
     {
@@ -45,12 +45,12 @@ public sealed class FirebasePushStrategy : INotificationProviderStrategy
             var response = await FirebaseMessaging.DefaultInstance.SendAsync(message, cancellationToken);
             _logger.LogInformation("FCM Push notification sent successfully. MessageId: {MessageId}", response);
 
-            return (true, $"{{\"status\":\"success\",\"messageId\":\"{response}\",\"provider\":\"Firebase\"}}");
+            return (true, $"{{\"status\":\"success\",\"messageId\":\"{response}\",\"provider\":\"Firebase\"}}", true);
         }
         catch (Exception ex)
         {
             _logger.LogError(ex, "FCM Push notification dispatch failed.");
-            return (false, $"{{\"status\":\"failed\",\"error\":\"{ex.Message}\",\"provider\":\"Firebase\"}}");
+            return (false, $"{{\"status\":\"failed\",\"error\":\"{ex.Message}\",\"provider\":\"Firebase\"}}", true);
         }
     }
 

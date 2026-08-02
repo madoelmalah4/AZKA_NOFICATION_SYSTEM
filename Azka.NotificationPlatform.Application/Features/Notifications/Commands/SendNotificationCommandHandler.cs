@@ -63,7 +63,8 @@ public sealed class SendNotificationCommandHandler
             body: renderedBody,
             correlationId: request.CorrelationId,
             requestedAt: request.RequestedAt,
-            subject: renderedSubject);
+            subject: renderedSubject,
+            applicationName: request.ApplicationName);
 
         await _notificationRepo.AddAsync(notification, cancellationToken);
 
@@ -109,6 +110,7 @@ public sealed class SendNotificationCommandHandler
         Body = n.Body,
         Status = n.Status,
         CorrelationId = n.CorrelationId,
-        RequestedAt = n.RequestedAt
+        RequestedAt = n.RequestedAt,
+        ApplicationName = n.ApplicationName
     };
 }

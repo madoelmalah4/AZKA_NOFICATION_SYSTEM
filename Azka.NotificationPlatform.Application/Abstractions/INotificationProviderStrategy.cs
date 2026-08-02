@@ -12,6 +12,6 @@ public interface INotificationProviderStrategy
     /// </summary>
     /// <param name="notification">The notification to dispatch.</param>
     /// <param name="cancellationToken">Request cancellation token.</param>
-    /// <returns>A tuple indicating success and the raw provider response string.</returns>
-    Task<(bool IsSuccess, string ProviderResponse)> ExecuteAsync(Notification notification, CancellationToken cancellationToken);
+    /// <returns>A tuple indicating success, provider response, and whether a failure is recoverable for retry logic.</returns>
+    Task<(bool IsSuccess, string ProviderResponse, bool IsRecoverable)> ExecuteAsync(Notification notification, CancellationToken cancellationToken);
 }

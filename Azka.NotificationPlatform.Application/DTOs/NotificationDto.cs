@@ -36,6 +36,9 @@ public sealed record NotificationDto
     /// <summary>UTC timestamp when the request was raised by the caller.</summary>
     public required DateTime RequestedAt { get; init; }
 
+    /// <summary>Upstream application name submitting the notification.</summary>
+    public string? ApplicationName { get; init; }
+
     /// <summary>External gateway-returned message ID (e.g., Firebase Message ID, SendGrid Message ID).</summary>
     public string? ExternalMessageId { get; init; }
 }

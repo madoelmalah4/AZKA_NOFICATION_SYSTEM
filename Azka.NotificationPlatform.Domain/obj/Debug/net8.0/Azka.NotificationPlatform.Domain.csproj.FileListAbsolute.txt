@@ -10,3 +10,15 @@ C:\Users\E.J.S\source\repos\AZKA_NOTIFICATION_SYSTEM\src\Azka.NotificationPlatfo
 C:\Users\E.J.S\source\repos\AZKA_NOTIFICATION_SYSTEM\src\Azka.NotificationPlatform.Domain\obj\Debug\net8.0\refint\Azka.NotificationPlatform.Domain.dll
 C:\Users\E.J.S\source\repos\AZKA_NOTIFICATION_SYSTEM\src\Azka.NotificationPlatform.Domain\obj\Debug\net8.0\Azka.NotificationPlatform.Domain.pdb
 C:\Users\E.J.S\source\repos\AZKA_NOTIFICATION_SYSTEM\src\Azka.NotificationPlatform.Domain\obj\Debug\net8.0\ref\Azka.NotificationPlatform.Domain.dll
+C:\Users\jana0\OneDrive\Desktop\AZKA_NOFICATION_SYSTEM\Azka.NotificationPlatform.Domain\bin\Debug\net8.0\Azka.NotificationPlatform.Domain.deps.json
+C:\Users\jana0\OneDrive\Desktop\AZKA_NOFICATION_SYSTEM\Azka.NotificationPlatform.Domain\bin\Debug\net8.0\Azka.NotificationPlatform.Domain.dll
+C:\Users\jana0\OneDrive\Desktop\AZKA_NOFICATION_SYSTEM\Azka.NotificationPlatform.Domain\bin\Debug\net8.0\Azka.NotificationPlatform.Domain.pdb
+C:\Users\jana0\OneDrive\Desktop\AZKA_NOFICATION_SYSTEM\Azka.NotificationPlatform.Domain\obj\Debug\net8.0\Azka.NotificationPlatform.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jana0\OneDrive\Desktop\AZKA_NOFICATION_SYSTEM\Azka.NotificationPlatform.Domain\obj\Debug\net8.0\Azka.NotificationPlatform.Domain.AssemblyInfoInputs.cache
+C:\Users\jana0\OneDrive\Desktop\AZKA_NOFICATION_SYSTEM\Azka.NotificationPlatform.Domain\obj\Debug\net8.0\Azka.NotificationPlatform.Domain.AssemblyInfo.cs
+C:\Users\jana0\OneDrive\Desktop\AZKA_NOFICATION_SYSTEM\Azka.NotificationPlatform.Domain\obj\Debug\net8.0\Azka.NotificationPlatform.Domain.csproj.CoreCompileInputs.cache
+C:\Users\jana0\OneDrive\Desktop\AZKA_NOFICATION_SYSTEM\Azka.NotificationPlatform.Domain\obj\Debug\net8.0\Azka.NotificationPlatform.Domain.sourcelink.json
+C:\Users\jana0\OneDrive\Desktop\AZKA_NOFICATION_SYSTEM\Azka.NotificationPlatform.Domain\obj\Debug\net8.0\Azka.NotificationPlatform.Domain.dll
+C:\Users\jana0\OneDrive\Desktop\AZKA_NOFICATION_SYSTEM\Azka.NotificationPlatform.Domain\obj\Debug\net8.0\refint\Azka.NotificationPlatform.Domain.dll
+C:\Users\jana0\OneDrive\Desktop\AZKA_NOFICATION_SYSTEM\Azka.NotificationPlatform.Domain\obj\Debug\net8.0\Azka.NotificationPlatform.Domain.pdb
+C:\Users\jana0\OneDrive\Desktop\AZKA_NOFICATION_SYSTEM\Azka.NotificationPlatform.Domain\obj\Debug\net8.0\ref\Azka.NotificationPlatform.Domain.dll

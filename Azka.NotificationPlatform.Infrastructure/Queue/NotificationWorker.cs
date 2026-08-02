@@ -105,19 +105,19 @@ public sealed class NotificationWorker : BackgroundService
                     try
                     {
                         _logger.LogInformation("Dispatching notification {NotificationId} (Attempt {AttemptNum}) using {StrategyName}.", notificationId, attemptNum, strategy.GetType().Name);
-                        var (success, response) = await strategy.ExecuteAsync(notification, stoppingToken);
+                        var (success, response, isRecoverable) = await strategy.ExecuteAsync(notification, stoppingToken);
                         deliverySuccess = success;
                         providerResponse = response;
 
-                        _logger.LogInformation("Dispatch result for {NotificationId}: Success={Success}, Response={Response}", notificationId, success, response);
+                        _logger.LogInformation("Dispatch result for {NotificationId}: Success={Success}, Response={Response}, Recoverable={Recoverable}", notificationId, success, response, isRecoverable);
 
                         attempt.Complete(success ? "Success" : "Failure", DateTime.UtcNow, response);
                         attemptRepo.Update(attempt);
                         await unitOfWork.SaveChangesAsync(stoppingToken);
 
-                        if (success)
+                        if (success || !isRecoverable)
                         {
-                            break; // Delivered successfully
+                            break; // Delivered successfully or non-recoverable failure (do not retry)
                         }
                     }
                     catch (Exception ex)

@@ -37,6 +37,9 @@ public sealed record SendNotificationCommand : IRequest<NotificationDto>
     /// <summary>Delivery channel for this notification.</summary>
     public required NotificationChannel Channel { get; init; }
 
+    /// <summary>Optional caller application or system name.</summary>
+    public string? ApplicationName { get; init; }
+
     [System.Text.Json.Serialization.JsonIgnore]
     public string Language { get; init; } = "en-US";
 

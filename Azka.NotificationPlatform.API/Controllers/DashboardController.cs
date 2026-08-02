@@ -41,4 +41,17 @@ public sealed class DashboardController : ControllerBase
         var result = await _mediator.Send(new GetChannelSummaryQuery(), cancellationToken);
         return Ok(result);
     }
+
+    /// <summary>
+    /// Provides delivery statistics grouped by registered notification provider (FR-10).
+    /// Each entry shows the provider's name, channel, activation state, and aggregated
+    /// delivery counts (total, delivered, failed, attempts) with a derived success rate.
+    /// </summary>
+    [HttpGet("providers")]
+    [ProducesResponseType(typeof(ProviderSummaryDto), StatusCodes.Status200OK)]
+    public async Task<ActionResult<ProviderSummaryDto>> GetProvidersSummary(CancellationToken cancellationToken)
+    {
+        var result = await _mediator.Send(new GetProviderSummaryQuery(), cancellationToken);
+        return Ok(result);
+    }
 }
