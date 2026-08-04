@@ -1,10 +1,13 @@
 using Azka.NotificationPlatform.Application.DTOs;
 using Azka.NotificationPlatform.Application.Features.Dashboard.Queries;
+using Azka.NotificationPlatform.Application.Features.Dashboard.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Azka.NotificationPlatform.API.Controllers;
+
+public class GetProviderSummaryQuery : MediatR.IRequest<ProviderSummaryDto> { }
 
 /// <summary>
 /// REST API controller exposing dashboard analytics and platform summaries.

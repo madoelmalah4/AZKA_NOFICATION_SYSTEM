@@ -32,3 +32,5 @@ C:\Users\jana0\OneDrive\Desktop\AZKA_NOFICATION_SYSTEM\Azka.NotificationPlatform
 C:\Users\jana0\OneDrive\Desktop\AZKA_NOFICATION_SYSTEM\Azka.NotificationPlatform.Application\obj\Debug\net8.0\ref\Azka.NotificationPlatform.Application.dll
 C:\Users\jana0\OneDrive\Desktop\AZKA_NOFICATION_SYSTEM\Azka.NotificationPlatform.Application\bin\Debug\net8.0\Azka.NotificationPlatform.Application.xml
 C:\Users\jana0\OneDrive\Desktop\AZKA_NOFICATION_SYSTEM\Azka.NotificationPlatform.Application\obj\Debug\net8.0\Azka.NotificationPlatform.Application.xml
+C:\Users\E.J.S\source\repos\AZKA_NOTIFICATION_SYSTEM\src\Azka.NotificationPlatform.Application\bin\Debug\net8.0\Azka.NotificationPlatform.Application.xml
+C:\Users\E.J.S\source\repos\AZKA_NOTIFICATION_SYSTEM\src\Azka.NotificationPlatform.Application\obj\Debug\net8.0\Azka.NotificationPlatform.Application.xml

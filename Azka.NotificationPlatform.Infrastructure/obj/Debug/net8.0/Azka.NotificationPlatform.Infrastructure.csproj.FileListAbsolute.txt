@@ -39,3 +39,4 @@ C:\Users\jana0\OneDrive\Desktop\AZKA_NOFICATION_SYSTEM\Azka.NotificationPlatform
 C:\Users\jana0\OneDrive\Desktop\AZKA_NOFICATION_SYSTEM\Azka.NotificationPlatform.Infrastructure\obj\Debug\net8.0\Azka.NotificationPlatform.Infrastructure.genruntimeconfig.cache
 C:\Users\jana0\OneDrive\Desktop\AZKA_NOFICATION_SYSTEM\Azka.NotificationPlatform.Infrastructure\obj\Debug\net8.0\ref\Azka.NotificationPlatform.Infrastructure.dll
 C:\Users\jana0\OneDrive\Desktop\AZKA_NOFICATION_SYSTEM\Azka.NotificationPlatform.Infrastructure\bin\Debug\net8.0\Azka.NotificationPlatform.Application.xml
+C:\Users\E.J.S\source\repos\AZKA_NOTIFICATION_SYSTEM\src\Azka.NotificationPlatform.Infrastructure\bin\Debug\net8.0\Azka.NotificationPlatform.Application.xml
